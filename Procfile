@@ -1,0 +1,1 @@
+web: streamlit run eda_main.py
