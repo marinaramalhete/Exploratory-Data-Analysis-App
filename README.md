@@ -14,7 +14,7 @@ Clone the repository and install all the packages necessary:
 
 ```
 pip install virtualenv
-vintualenv venv
+virtualenv venv
 source venv/bin/activate
 
 pip install -r requirements.txt 
