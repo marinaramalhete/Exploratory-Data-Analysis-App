@@ -32,8 +32,7 @@ You can create your own app on Heroku platform. Follow [this](https://devcenter.
 You can access the app [here](https://marinaramalhete-exploratory-data-analysis-app-eda-main-9v2sfp.streamlit.app/)
 
 # Built With
-[Streamlit](https://docs.streamlit.io/index.html) - The web framework
-[Heroku](https://dashboard.heroku.com/) - App host
+[Streamlit](https://docs.streamlit.io/index.html) - The web framework and App host
 
 # Author
 Marina Ramalhete de Souza - [Linkedin](https://www.linkedin.com/in/marinaramalhete/) [Github](https://github.com/marinaramalhete)
