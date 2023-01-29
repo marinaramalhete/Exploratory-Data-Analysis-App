@@ -29,7 +29,7 @@ streamlit run eda_main.py
 # Deployment
 You can create your own app on Heroku platform. Follow [this](https://devcenter.heroku.com/)
 
-You can access the app [here](https://exploratorydata.herokuapp.com/)
+You can access the app [here](https://marinaramalhete-exploratory-data-analysis-app-eda-main-9v2sfp.streamlit.app/)
 
 # Built With
 [Streamlit](https://docs.streamlit.io/index.html) - The web framework
