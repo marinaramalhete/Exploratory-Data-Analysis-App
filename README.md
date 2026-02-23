@@ -106,7 +106,7 @@ pre-commit install
 
 ## Author
 
-**Marina Ramalhete de Souza** — [LinkedIn](https://www.linkedin.com/in/marinaramalhete/) · [GitHub](https://github.com/marinaramalhete)
+**Marina Ramalhete Masid** — [LinkedIn](https://www.linkedin.com/in/marinaramalhete/) · [GitHub](https://github.com/marinaramalhete)
 
 ## License
 
