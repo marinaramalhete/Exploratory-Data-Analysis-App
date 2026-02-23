@@ -119,13 +119,22 @@ def render() -> None:
                 key="mv_heat_agg",
             )
             if len(selected) == 3:
-                try:
-                    fig = plotter.heatmap_pivot(selected[0], selected[1], selected[2], aggfunc)
-                    st.pyplot(fig)
-                    add_matplotlib_download(fig, "heatmap_pivot")
-                    plt.close(fig)
-                except Exception as e:
-                    st.error(f"Could not create pivot heatmap: {e}")
+                row_var, col_var, val_var = selected
+                if df[val_var].dtype.kind not in ("i", "f"):
+                    st.error(
+                        f"**{val_var}** is not a numeric column. "
+                        "The 3rd variable must be numeric so it can be aggregated "
+                        f"(e.g. {aggfunc}). Please reorder your selection: "
+                        "1st = row, 2nd = column, 3rd = numeric value."
+                    )
+                else:
+                    try:
+                        fig = plotter.heatmap_pivot(row_var, col_var, val_var, aggfunc)
+                        st.pyplot(fig)
+                        add_matplotlib_download(fig, "heatmap_pivot")
+                        plt.close(fig)
+                    except Exception as e:
+                        st.error(f"Could not create pivot heatmap: {e}")
             else:
                 st.info("Please select exactly 3 variables.")
 
