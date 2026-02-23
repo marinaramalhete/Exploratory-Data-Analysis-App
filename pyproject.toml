@@ -1,0 +1,99 @@
+[project]
+name = "eda-app"
+version = "1.0.0"
+description = "Interactive Exploratory Data Analysis web app built with Streamlit"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+authors = [
+    {name = "Marina Ramalhete", email = "souzamarina92@gmail.com"},
+]
+keywords = ["eda", "data-analysis", "streamlit", "visualization", "statistics"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "streamlit>=1.40.0",
+    "pandas>=2.2.0",
+    "numpy>=2.1.0",
+    "matplotlib>=3.9.0",
+    "seaborn>=0.13.0",
+    "plotly>=5.24.0",
+    "scipy>=1.14.0",
+    "openpyxl>=3.1.0",
+    "pyarrow>=17.0.0",
+    "kaleido>=0.2.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.8.0",
+    "mypy>=1.13",
+    "pre-commit>=4.0",
+    "pandas-stubs>=2.0",
+]
+
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["eda_app*"]
+
+# --- Ruff (linting + formatting) ---
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["src", "pages", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "N",    # pep8-naming
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "SIM",  # flake8-simplify
+    "TCH",  # flake8-type-checking
+    "RUF",  # ruff-specific rules
+]
+ignore = [
+    "E501",   # line too long (handled by formatter)
+    "B008",   # do not perform function calls in argument defaults (Streamlit uses this)
+    "RUF001", # ambiguous unicode chars (intentional: ×, ℹ️ etc.)
+    "RUF002", # ambiguous unicode in docstrings
+]
+
+[tool.ruff.lint.per-file-ignores]
+"src/eda_app/Home.py" = ["N999"]  # Streamlit requires capitalized filename for sidebar label
+
+[tool.ruff.lint.isort]
+known-first-party = ["eda_app"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+# --- Mypy ---
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+check_untyped_defs = true
+ignore_missing_imports = true
+
+# --- Pytest ---
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"
