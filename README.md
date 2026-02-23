@@ -21,7 +21,7 @@ An interactive web application for **Exploratory Data Analysis** — upload your
 
 ```
 src/eda_app/
-├── app.py                  # Entry point + Home page
+├── Home.py                 # Entry point + Home page
 ├── data/
 │   ├── __init__.py         # Data loading (CSV/Excel/Parquet)
 │   └── preprocessing.py    # Missing value imputation
@@ -69,7 +69,7 @@ pip install -r requirements.txt
 ### Running the app
 
 ```bash
-streamlit run src/eda_app/app.py
+streamlit run src/eda_app/Home.py
 ```
 
 ### Running tests
