@@ -1,38 +1,113 @@
-# Exploratory Data Analysis
+# 🔍 Exploratory Data Analysis App
 
-The idea of this app is to help data scientists (or anyone looking for statistics) to get their first data insights simply and quickly.
-This application helps to analyze the data through univariate and multivariate statistics and also visualize the data through the dear graphs.
+[![CI](https://github.com/marinaramalhete/Exploratory-Data-Analysis-App/actions/workflows/ci.yml/badge.svg)](https://github.com/marinaramalhete/Exploratory-Data-Analysis-App/actions/workflows/ci.yml)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.40+-FF4B4B.svg)](https://streamlit.io)
 
-# Getting Started
-Here is some information to help you get started. This application is still in development and many other features can be added and improved!
+An interactive web application for **Exploratory Data Analysis** — upload your dataset (CSV, Excel, or Parquet) and get comprehensive statistics, interactive visualizations, and an automated profiling report.
 
-## Prerequisites
-The packages needed are in the requirements.txt file.
+## Features
 
-## Installing
-Clone the repository and install all the packages necessary:
+- **Multi-format support** — CSV, Excel (.xlsx), and Parquet files
+- **Overview** — Summary statistics, data types, and missing value analysis
+- **Univariate analysis** — Histograms, boxplots, distribution plots with descriptive stats and quantiles
+- **Multivariate analysis** — 10 chart types: correlation heatmap, scatter, violin, swarm, bar, line, count, pivot heatmap, and more
+- **Auto-profiling** — Comprehensive automated report with outlier detection (IQR + Z-score), data quality alerts, distribution analysis, and correlation matrix
+- **Chart export** — Download any chart as PNG
+- **Data export** — Download statistics and processed data as CSV
+- **Interactive** — Plotly for interactive charts + Seaborn for statistical plots
 
-```
-pip install virtualenv
-virtualenv venv
-source venv/bin/activate
-
-pip install -r requirements.txt 
-```
-
-Use the following command to run the application:
+## Architecture
 
 ```
-streamlit run eda_main.py
+src/eda_app/
+├── app.py                  # Entry point + Home page
+├── data/
+│   ├── __init__.py         # Data loading (CSV/Excel/Parquet)
+│   └── preprocessing.py    # Missing value imputation
+├── stats/
+│   ├── __init__.py         # Descriptive stats, quantiles, summaries
+│   └── profiling.py        # Automated profiling report
+├── visualization/
+│   └── __init__.py         # EDAPlotter class (Plotly + Seaborn)
+└── components/
+    └── download.py         # Chart/data export utilities
+pages/
+├── 1_📊_Overview.py
+├── 2_📈_Univariate.py
+├── 3_📉_Multivariate.py
+└── 4_📋_Profiling.py
+tests/
+├── test_loader.py
+├── test_stats.py
+├── test_preprocessing.py
+└── test_visualization.py
 ```
 
-# Deployment
-You can create your own app on Heroku platform. Follow [this](https://devcenter.heroku.com/)
+## Getting Started
 
-You can access the app [here](https://marinaramalhete-exploratory-data-analysis-app-eda-main-9v2sfp.streamlit.app/)
+### Prerequisites
 
-# Built With
-[Streamlit](https://docs.streamlit.io/index.html) - The web framework and App host
+- Python 3.11+
+- [conda](https://docs.conda.io/) (recommended) or pip
 
-# Author
-Marina Ramalhete de Souza - [Linkedin](https://www.linkedin.com/in/marinaramalhete/) [Github](https://github.com/marinaramalhete)
+### Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/marinaramalhete/Exploratory-Data-Analysis-App.git
+cd Exploratory-Data-Analysis-App
+
+# Create environment
+conda create -n eda-app python=3.11 -y
+conda activate eda-app
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### Running the app
+
+```bash
+streamlit run src/eda_app/app.py
+```
+
+### Running tests
+
+```bash
+pip install pytest
+pytest tests/ -v
+```
+
+## Development
+
+```bash
+# Install dev dependencies
+pip install ruff mypy pytest pre-commit pandas-stubs
+
+# Linting
+ruff check src/ pages/ tests/
+ruff format src/ pages/ tests/
+
+# Pre-commit hooks
+pre-commit install
+```
+
+## Tech Stack
+
+| Category | Tools |
+|----------|-------|
+| Framework | Streamlit 1.40+ |
+| Data | Pandas, NumPy, SciPy |
+| Visualization | Plotly, Seaborn, Matplotlib |
+| Testing | Pytest |
+| Linting | Ruff |
+| CI/CD | GitHub Actions |
+
+## Author
+
+**Marina Ramalhete de Souza** — [LinkedIn](https://www.linkedin.com/in/marinaramalhete/) · [GitHub](https://github.com/marinaramalhete)
+
+## License
+
+This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
