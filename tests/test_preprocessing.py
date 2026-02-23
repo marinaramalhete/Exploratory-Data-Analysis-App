@@ -62,6 +62,20 @@ class TestImputeNumeric:
         _ = impute_numeric(df_numeric_nans, ["a"], "mean")
         assert df_numeric_nans["a"].isna().sum() == original_nans
 
+    def test_mode_imputation(self, df_numeric_nans: pd.DataFrame) -> None:
+        result = impute_numeric(df_numeric_nans, ["a"], "mode")
+        assert result["a"].isna().sum() == 0
+
+    def test_multiple_columns(self, df_numeric_nans: pd.DataFrame) -> None:
+        result = impute_numeric(df_numeric_nans, ["a", "b"], "mean")
+        assert result["a"].isna().sum() == 0
+        assert result["b"].isna().sum() == 0
+
+    def test_unsupported_method_is_noop(self, df_numeric_nans: pd.DataFrame) -> None:
+        original = df_numeric_nans.copy()
+        result = impute_numeric(df_numeric_nans, ["a"], "unsupported")
+        pd.testing.assert_frame_equal(result, original)
+
 
 class TestImputeCategorical:
     """Tests for categorical imputation."""
@@ -84,3 +98,13 @@ class TestImputeCategorical:
         result = impute_categorical(df_categorical_nans, ["color"], "drop")
         assert result["color"].isna().sum() == 0
         assert len(result) == 3
+
+    def test_text_default_unknown(self, df_categorical_nans: pd.DataFrame) -> None:
+        result = impute_categorical(df_categorical_nans, ["color"], "text")
+        assert result["color"].isna().sum() == 0
+        assert (result["color"] == "Unknown").sum() == 2
+
+    def test_unsupported_method_is_noop(self, df_categorical_nans: pd.DataFrame) -> None:
+        original = df_categorical_nans.copy()
+        result = impute_categorical(df_categorical_nans, ["color"], "unsupported")
+        pd.testing.assert_frame_equal(result, original)

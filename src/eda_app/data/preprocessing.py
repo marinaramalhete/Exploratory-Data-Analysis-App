@@ -59,6 +59,9 @@ def impute_numeric(
                 f"Rows: {df.shape[0]} → {result.shape[0]} ({df.shape[0] - result.shape[0]} dropped)"
             )
 
+        case _:
+            st.warning(f"Unsupported numeric imputation method '{method}'. No imputation applied.")
+
     return result
 
 
@@ -97,6 +100,11 @@ def impute_categorical(
             result = df.dropna(subset=columns)
             st.caption(
                 f"Rows: {df.shape[0]} → {result.shape[0]} ({df.shape[0] - result.shape[0]} dropped)"
+            )
+
+        case _:
+            st.warning(
+                f"Unsupported categorical imputation method '{method}'. No imputation applied."
             )
 
     return result

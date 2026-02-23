@@ -289,7 +289,9 @@ class EDAPlotter:
         Returns:
             Matplotlib Figure object.
         """
-        data = self.df[columns] if columns else self.df.select_dtypes("number")
+        data = (
+            self.df[columns].select_dtypes("number") if columns else self.df.select_dtypes("number")
+        )
         corr = data.corr(method=method)
 
         fig, ax = plt.subplots(figsize=(max(8, len(corr) * 0.8), max(6, len(corr) * 0.6)))

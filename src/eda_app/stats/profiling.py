@@ -118,15 +118,16 @@ def generate_alerts(df: pd.DataFrame) -> list[dict[str, str]]:
     # Outliers
     for col in numeric_cols:
         clean = df[col].dropna()
-        if len(clean) == 0:
+        n_clean = len(clean)
+        if n_clean == 0:
             continue
         n_outliers = _detect_outliers_iqr(clean)
-        if n_outliers > n_rows * 0.05:
+        if n_outliers > n_clean * 0.05:
             alerts.append(
                 {
                     "type": "🟡",
                     "column": col,
-                    "message": f"{n_outliers} outliers detected ({n_outliers / n_rows * 100:.1f}%) via IQR method",
+                    "message": f"{n_outliers} outliers detected ({n_outliers / n_clean * 100:.1f}%) via IQR method",
                 }
             )
 

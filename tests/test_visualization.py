@@ -93,3 +93,49 @@ class TestSeabornCharts:
         fig = plotter.heatmap_pivot("dept", "city", "salary", aggfunc="mean")
         assert isinstance(fig, plt.Figure)
         plt.close(fig)
+
+
+class TestEdgeCases:
+    """Edge-case tests for chart methods."""
+
+    def test_empty_dataframe_heatmap(self) -> None:
+        df = pd.DataFrame(columns=["age", "salary", "dept"])
+        plotter = EDAPlotter(df)
+        try:
+            fig = plotter.correlation_heatmap()
+        except (ValueError, TypeError):
+            pass  # empty DF can raise — acceptable
+        else:
+            assert isinstance(fig, plt.Figure)
+            plt.close(fig)
+
+    def test_single_row_heatmap(self) -> None:
+        df = pd.DataFrame([{"age": 30, "salary": 100_000, "dept": "Eng"}])
+        plotter = EDAPlotter(df)
+        fig = plotter.correlation_heatmap()
+        assert isinstance(fig, plt.Figure)
+        plt.close(fig)
+
+    def test_heatmap_mixed_columns_filters_numeric(self) -> None:
+        df = pd.DataFrame(
+            {
+                "age": [25, 35, 45],
+                "salary": [70_000, 90_000, 110_000],
+                "dept": ["sales", "eng", "hr"],
+            }
+        )
+        plotter = EDAPlotter(df)
+        fig = plotter.correlation_heatmap(columns=["age", "salary", "dept"])
+        assert isinstance(fig, plt.Figure)
+        plt.close(fig)
+
+    def test_heatmap_no_numeric_columns(self) -> None:
+        df = pd.DataFrame({"dept": ["sales", "eng", "hr"], "city": ["NY", "SF", "LA"]})
+        plotter = EDAPlotter(df)
+        try:
+            fig = plotter.correlation_heatmap()
+        except (ValueError, TypeError):
+            pass  # controlled exception is acceptable
+        else:
+            assert isinstance(fig, plt.Figure)
+            plt.close(fig)

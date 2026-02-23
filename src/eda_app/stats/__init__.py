@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import numpy as np
 import pandas as pd
 import streamlit as st
 
@@ -45,12 +44,11 @@ def compute_quantile_stats(_df: pd.DataFrame, columns: list[str]) -> pd.DataFram
     Returns:
         DataFrame with quantile statistics.
     """
-    clean = _df[columns].dropna()
     stats_q: dict[str, pd.Series] = {
         "Min": _df[columns].min(),
-        "Q1": clean.quantile(0.25),
-        "Median": clean.quantile(0.50),
-        "Q3": clean.quantile(0.75),
+        "Q1": _df[columns].quantile(0.25),
+        "Median": _df[columns].quantile(0.50),
+        "Q3": _df[columns].quantile(0.75),
         "Max": _df[columns].max(),
     }
     stats_q["Range"] = stats_q["Max"] - stats_q["Min"]
@@ -72,11 +70,13 @@ def compute_variable_info(_df: pd.DataFrame, columns: list[str]) -> pd.DataFrame
     Returns:
         DataFrame with variable information.
     """
+    zeros = (_df[columns] == 0).sum()
+    zeros_pct = (zeros * 100 / len(_df)).round(2)
     info: dict[str, pd.Series] = {
         "Type": _df[columns].dtypes,
         "Unique": _df[columns].nunique(),
-        "Zeros": (len(_df) - np.count_nonzero(_df[columns])),
-        "Zeros %": ((len(_df) - np.count_nonzero(_df[columns])) * 100 / len(_df)).round(2),
+        "Zeros": zeros,
+        "Zeros %": zeros_pct,
         "Missing": _df[columns].isna().sum(),
         "Missing %": (_df[columns].isna().sum() / _df.shape[0] * 100).round(2),
     }
