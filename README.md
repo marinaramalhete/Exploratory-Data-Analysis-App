@@ -30,13 +30,13 @@ src/eda_app/
 │   └── profiling.py        # Automated profiling report
 ├── visualization/
 │   └── __init__.py         # EDAPlotter class (Plotly + Seaborn)
-└── components/
-    └── download.py         # Chart/data export utilities
-pages/
-├── 1_Overview.py
-├── 2_Univariate.py
-├── 3_Multivariate.py
-└── 4_Profiling.py
+├── components/
+│   └── download.py         # Chart/data export utilities
+└── pages/
+    ├── 1_Overview.py
+    ├── 2_Univariate.py
+    ├── 3_Multivariate.py
+    └── 4_Profiling.py
 tests/
 ├── test_loader.py
 ├── test_stats.py
