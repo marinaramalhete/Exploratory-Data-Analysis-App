@@ -73,6 +73,9 @@ ignore = [
     "RUF002", # ambiguous unicode in docstrings
 ]
 
+[tool.ruff.lint.per-file-ignores]
+"src/eda_app/Home.py" = ["N999"]  # Streamlit requires capitalized filename for sidebar label
+
 [tool.ruff.lint.isort]
 known-first-party = ["eda_app"]
 
