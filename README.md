@@ -33,10 +33,10 @@ src/eda_app/
 └── components/
     └── download.py         # Chart/data export utilities
 pages/
-├── 1_📊_Overview.py
-├── 2_📈_Univariate.py
-├── 3_📉_Multivariate.py
-└── 4_📋_Profiling.py
+├── 1_Overview.py
+├── 2_Univariate.py
+├── 3_Multivariate.py
+└── 4_Profiling.py
 tests/
 ├── test_loader.py
 ├── test_stats.py
