@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from src.eda_app.stats.profiling import generate_alerts
+from eda_app.stats.profiling import generate_alerts
 
 
 class TestGenerateAlerts:

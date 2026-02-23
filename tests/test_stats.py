@@ -5,7 +5,7 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-from src.eda_app.stats import (
+from eda_app.stats import (
     compute_dataset_info,
     compute_descriptive_stats,
     compute_quantile_stats,

@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import streamlit as st
 
-from src.eda_app.components.download import add_csv_download
-from src.eda_app.stats import compute_dataset_info, compute_summary_stats
+from eda_app.components.download import add_csv_download
+from eda_app.stats import compute_dataset_info, compute_summary_stats
 
 st.set_page_config(page_title="Overview", page_icon="📊", layout="wide")
 

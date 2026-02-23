@@ -7,7 +7,7 @@ import io
 import pandas as pd
 import pytest
 
-from src.eda_app.data import get_categorical_columns, get_numeric_columns, load_file
+from eda_app.data import get_categorical_columns, get_numeric_columns, load_file
 
 
 @pytest.fixture

@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import pytest
 
-from src.eda_app.visualization import EDAPlotter
+from eda_app.visualization import EDAPlotter
 
 
 @pytest.fixture

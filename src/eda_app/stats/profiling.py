@@ -9,7 +9,7 @@ import plotly.express as px
 import seaborn as sns
 import streamlit as st
 
-from src.eda_app.data import get_categorical_columns, get_numeric_columns
+from eda_app.data import get_categorical_columns, get_numeric_columns
 
 
 def _detect_outliers_iqr(series: pd.Series) -> int:

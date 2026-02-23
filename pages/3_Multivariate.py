@@ -5,8 +5,8 @@ from __future__ import annotations
 import matplotlib.pyplot as plt
 import streamlit as st
 
-from src.eda_app.components.download import add_matplotlib_download, add_plotly_download
-from src.eda_app.visualization import EDAPlotter
+from eda_app.components.download import add_matplotlib_download, add_plotly_download
+from eda_app.visualization import EDAPlotter
 
 st.set_page_config(page_title="Multivariate Analysis", page_icon="📉", layout="wide")
 

@@ -44,8 +44,8 @@ requires = ["setuptools>=75.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-where = ["."]
-include = ["src*", "pages*"]
+where = ["src"]
+include = ["eda_app*"]
 
 # --- Ruff (linting + formatting) ---
 [tool.ruff]
@@ -74,7 +74,7 @@ ignore = [
 ]
 
 [tool.ruff.lint.isort]
-known-first-party = ["src"]
+known-first-party = ["eda_app"]
 
 [tool.ruff.format]
 quote-style = "double"

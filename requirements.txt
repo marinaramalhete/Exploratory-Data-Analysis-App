@@ -17,3 +17,6 @@ pyarrow>=17.0.0
 
 # Chart export
 kaleido>=0.2.1
+
+# Install the project itself so 'eda_app' is importable
+-e .

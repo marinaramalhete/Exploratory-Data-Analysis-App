@@ -5,7 +5,7 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-from src.eda_app.data.preprocessing import impute_categorical, impute_numeric
+from eda_app.data.preprocessing import impute_categorical, impute_numeric
 
 
 @pytest.fixture

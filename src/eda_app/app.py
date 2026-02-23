@@ -34,7 +34,7 @@ def main() -> None:
 
     if uploaded_file is not None:
         try:
-            from src.eda_app.data import load_file
+            from eda_app.data import load_file
 
             df = load_file(uploaded_file, uploaded_file.name)
             st.session_state["df"] = df

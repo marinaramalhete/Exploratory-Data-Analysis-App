@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import streamlit as st
 
-from src.eda_app.stats.profiling import render_profiling
+from eda_app.stats.profiling import render_profiling
 
 st.set_page_config(page_title="Auto Profiling", page_icon="📋", layout="wide")
 

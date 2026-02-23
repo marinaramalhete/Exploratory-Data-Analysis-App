@@ -5,14 +5,14 @@ from __future__ import annotations
 import matplotlib.pyplot as plt
 import streamlit as st
 
-from src.eda_app.components.download import add_matplotlib_download, add_plotly_download
-from src.eda_app.data import get_categorical_columns, get_numeric_columns
-from src.eda_app.stats import (
+from eda_app.components.download import add_matplotlib_download, add_plotly_download
+from eda_app.data import get_categorical_columns, get_numeric_columns
+from eda_app.stats import (
     compute_descriptive_stats,
     compute_quantile_stats,
     compute_variable_info,
 )
-from src.eda_app.visualization import EDAPlotter
+from eda_app.visualization import EDAPlotter
 
 st.set_page_config(page_title="Univariate Analysis", page_icon="📈", layout="wide")
 
